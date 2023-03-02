@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Login.css';
 import useInput from './../../hooks/use-input';
 
@@ -13,7 +13,7 @@ function Login() {
     valueChangeHandler: emailChangedHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmail,
-  } = useInput((value) => value.trim() !== '' && value.lenght < 6);
+  } = useInput((value) => value.trim() !== '');
 
   let isFormValid = false;
   if (emailIsValid) {
@@ -32,14 +32,14 @@ function Login() {
     resetEmail();
   };
 
-  const emailInputClassname = emailIsValid ? 'mb-3 Login-invalid' : 'mb-3';
+  const emailInputClassname = !emailIsValid ? 'mb-3 Login-invalid' : 'mb-3';
 
   return (
     <Form className="Login-body" onSubmit={submitHandler}>
       <Form.Group className={emailInputClassname} controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control
-          type="enteredEmail"
+          type="email"
           placeholder="Enter enteredEmail"
           onChange={emailChangedHandler}
           onBlur={emailBlurHandler}
