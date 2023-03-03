@@ -1,11 +1,20 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 import Login from './../Login/';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import logo from './../../assets/logo.svg';
+import Movies from '../Movies';
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    console.log(isAuth, 'app');
+    console.log(isAuth ? 'authenticado' : 'Ainda nao');
+  }, [isAuth]);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -15,18 +24,8 @@ function App() {
         {' '}
         <Container>
           <Row>
-            <Col>
-              <h1>
-                Login
-                {/* <code>src/App.js</code> and save to reload. */}
-              </h1>
-            </Col>
-          </Row>
-          <Row>
             <Col></Col>
-            <Col>
-              <Login />
-            </Col>
+            <Col>{!isAuth ? <Login setIsAuth={setIsAuth} /> : <Movies />}</Col>
             <Col></Col>
           </Row>
         </Container>
