@@ -1,22 +1,14 @@
 import * as actions from '../actions';
 
 const initialState = {
-  genres: [],
-  isFetching: false,
+  movies: [],
 };
-
 export default function moviesReducer(state = initialState, action) {
   switch (action.type) {
-    case actions.GET_POPULAR_MOVIES:
+    case actions.GET_LAST_MOVIES:
       return {
         ...state,
-        isFetching: true,
-      };
-    case actions.FETCHED_POPULAR_MOVIES:
-      return {
-        ...state,
-        genres: action.payload.genres,
-        isFetching: false,
+        movies: action.payload.items,
       };
     default:
       return state;
